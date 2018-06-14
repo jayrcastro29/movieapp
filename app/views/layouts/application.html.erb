@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
+  
     <title>App</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -12,25 +13,22 @@
   <body>
      <p class="notice"><%= notice %></p>
        <p class="alert"><%= alert %></p>
-
-       <%# @user_details.each do |user_detail| %>
-         <%# if user_signed_in? %>
-              <%#= "Hello #{user_details.name}"%>                       
-            <%# end %>
-
-        <%# end %>
-          <%if user_signed_in? %>
-              <%= link_to 'Log-out', destroy_user_session_path, method: :delete%> <br>
+<div>
+      <%if user_signed_in? %>
+             <h3> <%= link_to 'Log-out', destroy_user_session_path, method: :delete%> </h3>
           <% end %>
-
-          <%if !user_signed_in? %>
-              <%= link_to 'Log-in', new_user_session_path %><br>
+         <%if admin_signed_in? %>
+              <h3><%= link_to 'Log-out', destroy_admin_session_path, method: :delete%> </h3>
+          <% end %>
+          <%if !user_signed_in? && !admin_signed_in?%>
+             <h3>Login as : <%= link_to 'User', new_user_session_path %>
+              <%= link_to 'Admin', new_admin_session_path %></h3>
           <% end %>
              
-                <%= link_to 'Home', root_path %>
-                <%= link_to 'View Movie List', movies_path %> 
-                <%#= link_to 'Add User', new_user_detail_path %>
+             <h3>  <%= link_to 'Home', root_path %>
+             <%= link_to 'View Movie List', movies_path %> </h3> 
 
-      <%= yield %>
+<hr>
+     <%= yield %> 
   </body>
 </html>
