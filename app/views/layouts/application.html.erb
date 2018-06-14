@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>App</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+     <p class="notice"><%= notice %></p>
+       <p class="alert"><%= alert %></p>
+
+       <%# @user_details.each do |user_detail| %>
+         <%# if user_signed_in? %>
+              <%#= "Hello #{user_details.name}"%>                       
+            <%# end %>
+
+        <%# end %>
+          <%if user_signed_in? %>
+              <%= link_to 'Log-out', destroy_user_session_path, method: :delete%> <br>
+          <% end %>
+
+          <%if !user_signed_in? %>
+              <%= link_to 'Log-in', new_user_session_path %><br>
+          <% end %>
+             
+                <%= link_to 'Home', root_path %>
+                <%= link_to 'View Movie List', movies_path %> 
+                <%#= link_to 'Add User', new_user_detail_path %>
+
+      <%= yield %>
+  </body>
+</html>
